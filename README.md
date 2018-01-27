@@ -50,14 +50,14 @@ it will request a password which you should remember. Now you can take the info 
 This will result something like that:
 ```
 {
-  enode: "enode://b8aa27806af660bfbb51493efb9269e507fd8471e0d53f66f8f7008b4afe5838febc32b3af7274b2939d2864365f86380465e7a2e28c3b94b83aa2d243fb29d9@[::]:30303?discport=0",
+  enode: "enode://b8aa27806af660bfbb51493efb9269e507fd8471e0d53f66f8f7008b4afe5838febc32b3af7274b2939d2864365f86380465e7a2e28c3b94b83aa2d243fb29d9@[::]:30299",
   id: "b8aa27806af660bfbb51493efb9269e507fd8471e0d53f66f8f7008b4afe5838febc32b3af7274b2939d2864365f86380465e7a2e28c3b94b83aa2d243fb29d9",
   ip: "::",
-  listenAddr: "[::]:30303",
+  listenAddr: "[::]:30299",
   name: "Geth/v1.7.2-stable-1db4ecdc/linux-amd64/go1.9",
   ports: {
     discovery: 0,
-    listener: 30303
+    listener: 30299
   },
   protocols: {
     eth: {
@@ -73,9 +73,9 @@ where enode is the name of your node, copy that in a txt.
 ## 5) Complete first node
 Stop this terminal with ctrl-c and enter the following command:
 ```
-$ geth --nodiscover --bootnodes enode://b8aa27806af660bfbb51493efb9269e507fd8471e0d53f66f8f7008b4afe5838febc32b3af7274b2939d2864365f86380465e7a2e28c3b94b83aa2d243fb29d9@[::]:30303?discport=0 --networkid 1923 console
+$ geth --nodiscover --bootnodes enode://b8aa27806af660bfbb51493efb9269e507fd8471e0d53f66f8f7008b4afe5838febc32b3af7274b2939d2864365f86380465e7a2e28c3b94b83aa2d243fb29d9@[::]:30299 --identity mynode-00 --port 30299 --rpc --rpcapi="db,eth,net,web3,admin,personal" --rpcport 8100 --rpcaddr "127.0.0.1" --rpccorsdomain "*" --networkid 13 console
 ```
-with "--nodiscover" we don't let nodes to discover eachother, "--bootnodes" contains the initial node we created, "--networkid 1923" is the id that this node is connected, which will be needed to connect other nodes on this blockchain.
+with "--nodiscover" we don't let nodes to discover eachother, "--bootnodes" contains the initial node we created, "--networkid 13" is the id that this node is connected, which will be needed to connect other nodes on this blockchain.
 
 ## 6) Init second node in another Virtual Machine (VM 2)
 Obviously you must install the dependencies in that VM too.
@@ -101,14 +101,14 @@ it will request a password which you should remember. Now you can take the info 
 write down the enode url. This will result something like that:
 ```
 {
-  enode: "enode://63ccd1e5d2550e51deda2f01ec6fe3e383972abbcd3d32e667b606671997a3d847dfcde440498b8e5fbe7be70e6e85990f7590e2e04a717fb6dc5020e06ca8de@[::]:30303?discport=0",
+  enode: "enode://63ccd1e5d2550e51deda2f01ec6fe3e383972abbcd3d32e667b606671997a3d847dfcde440498b8e5fbe7be70e6e85990f7590e2e04a717fb6dc5020e06ca8de@[::]:30299",
   id: "63ccd1e5d2550e51deda2f01ec6fe3e383972abbcd3d32e667b606671997a3d847dfcde440498b8e5fbe7be70e6e85990f7590e2e04a717fb6dc5020e06ca8de",
   ip: "::",
-  listenAddr: "[::]:30303",
+  listenAddr: "[::]:30299",
   name: "Geth/v1.7.2-stable-1db4ecdc/linux-amd64/go1.9",
   ports: {
     discovery: 0,
-    listener: 30303
+    listener: 30299
   },
   protocols: {
     eth: {
@@ -123,7 +123,7 @@ write down the enode url. This will result something like that:
 ## 9) Complete second node
 Stop this terminal with ctrl-c and enter the following command:
 ```
-$ geth --nodiscover --bootnodes enode://b8aa27806af660bfbb51493efb9269e507fd8471e0d53f66f8f7008b4afe5838febc32b3af7274b2939d2864365f86380465e7a2e28c3b94b83aa2d243fb29d9@[::]:30303?discport=0 --networkid 1923 console
+$ geth --nodiscover --bootnodes enode://b8aa27806af660bfbb51493efb9269e507fd8471e0d53f66f8f7008b4afe5838febc32b3af7274b2939d2864365f86380465e7a2e28c3b94b83aa2d243fb29d9@[::]:30299 --identity mynode-00 --port 30299 --rpc --rpcapi="db,eth,net,web3,admin,personal" --rpcport 8100 --rpcaddr "127.0.0.1" --rpccorsdomain "*" --networkid 13 console
 ```
 
 ## 10) Connect your nodes manually:
@@ -139,11 +139,11 @@ This will result something like this:
 where the second address is the ip we want.
 Thus, to connect those 2 VMs execute in the terminal of the second VM (or in the first with different enode url and ip):
 ```
-admin.addPeer("enode://b8aa27806af660bfbb51493efb9269e507fd8471e0d53f66f8f7008b4afe5838febc32b3af7274b2939d2864365f86380465e7a2e28c3b94b83aa2d243fb29d9@83.212.103.216:30303?discport=0")
+admin.addPeer("enode://b8aa27806af660bfbb51493efb9269e507fd8471e0d53f66f8f7008b4afe5838febc32b3af7274b2939d2864365f86380465e7a2e28c3b94b83aa2d243fb29d9@83.212.103.216:30299")
 ```
 If your machines were in the same local router, then you should execute:
 ```
-admin.addPeer("enode://b8aa27806af660bfbb51493efb9269e507fd8471e0d53f66f8f7008b4afe5838febc32b3af7274b2939d2864365f86380465e7a2e28c3b94b83aa2d243fb29d9@[::]:30303?discport=0")
+admin.addPeer("enode://b8aa27806af660bfbb51493efb9269e507fd8471e0d53f66f8f7008b4afe5838febc32b3af7274b2939d2864365f86380465e7a2e28c3b94b83aa2d243fb29d9@[::]:30299")
 ```
 
 ## Check peers and mine
@@ -166,7 +166,7 @@ The extra args you need to use are the datadir:
 ```
 --datadir mydir
 ```
-and the port which should be different from the defaul 30303:
+and the port which should be different from the default 30303:
 ```
 --port 30304
 ```
@@ -178,10 +178,10 @@ $ geth --datadir mydir console
 > personal.newAccount()
 > admin.nodeInfo
 Ctrl-C (stop terminal
-$ geth --datadir mydir --nodiscover --bootnodes enode://b8aa27806af660bfbb51493efb9269e507fd8471e0d53f66f8f7008b4afe5838febc32b3af7274b2939d2864365f86380465e7a2e28c3b94b83aa2d243fb29d9@[::]:30303?discport=0 --networkid 1923 console
+$ geth --datadir mydir --nodiscover --bootnodes enode://b8aa27806af660bfbb51493efb9269e507fd8471e0d53f66f8f7008b4afe5838febc32b3af7274b2939d2864365f86380465e7a2e28c3b94b83aa2d243fb29d9@[::]:30299 --identity mynode-00 --port 30299 --rpc --rpcapi="db,eth,net,web3,admin,personal" --rpcport 8100 --rpcaddr "127.0.0.1" --rpccorsdomain "*" --networkid 13 console
 ```
 If you are in the same machine with the node you want to connect you could use this:
 ```
-admin.addPeer("enode://b8aa27806af660bfbb51493efb9269e507fd8471e0d53f66f8f7008b4afe5838febc32b3af7274b2939d2864365f86380465e7a2e28c3b94b83aa2d243fb29d9@[::]:30303?discport=0")
+admin.addPeer("enode://b8aa27806af660bfbb51493efb9269e507fd8471e0d53f66f8f7008b4afe5838febc32b3af7274b2939d2864365f86380465e7a2e28c3b94b83aa2d243fb29d9@[::]:30299)
 ```
 or you can change the [::] with the external ip of the node.
